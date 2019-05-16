@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/LuisTei17/robosDeschamps/issues"
   },
-  "homepage": "https://github.com/LuisTei17/robosDeschamps#readme"
+  "homepage": "https://github.com/LuisTei17/robosDeschamps#readme",
+  "dependencies": {
+    "eslint": "^3.8.0",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
+    "readline-sync": "^1.4.9"
+  }
 }
