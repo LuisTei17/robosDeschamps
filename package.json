@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LuisTei17/robosDeschamps#readme",
   "dependencies": {
+    "algorithmia": "^0.3.10",
     "eslint": "^3.8.0",
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
