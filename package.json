@@ -21,6 +21,7 @@
     "eslint": "^3.8.0",
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
-    "readline-sync": "^1.4.9"
+    "readline-sync": "^1.4.9",
+    "sbd": "^1.0.15"
   }
 }

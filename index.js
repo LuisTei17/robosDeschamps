@@ -6,7 +6,6 @@ const robots = {
 async function start () {
     const content = robots.userInput();
     await robots.text(content);
-    console.log(content);
 }
 
 start();

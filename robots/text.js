@@ -1,11 +1,11 @@
 const algorithmia = require('algorithmia'),
-    algoCred = require('./../credentials/algorithimia.json');
+    algoCred = require('./../credentials/algorithimia.json'),
+    sentenceBoundaryDetection = require('sbd');
 
 async function robot (content) {
     await fetchContentFromWikipedia(content);
-    //     sanitizedContent = sanitizeContent(originalSourceContent);
-
-    // breakContentIntoSentences(sanitizedContent);
+    sanitizeContent(content);
+    breakContentIntoSentences(content);
 
     async function fetchContentFromWikipedia (content) {
         const algorithmiaAuthenticated = algorithmia(algoCred.apiKey),
@@ -15,6 +15,31 @@ async function robot (content) {
 
         content.originalSourceContent = wikipediaContent.content;
 
+    }
+
+    function sanitizeContent (content) {
+        const textWithoutBlankLinesAndMarkdown = removeBlankLinesAndMarkdown(content.originalSourceContent);
+        content.sanitizedSourceContent = textWithoutBlankLinesAndMarkdown.join(' ');
+        function removeBlankLinesAndMarkdown (text) {
+            const allLines = text.split('\n'),
+                withoutBlankLines = allLines.filter(line => line.trim().length && !line.trim().startsWith('='));
+
+            return withoutBlankLines;
+        }
+    }
+
+    function breakContentIntoSentences (content) {
+        const sentences = sentenceBoundaryDetection.sentences(content.sanitizedSourceContent);
+
+        content.sentences = [];
+
+        sentences.forEach(sentence => {
+            content.sentences.push({
+                text: sentence,
+                keyWords: [],
+                images: []
+            });
+        });
     }
 };
 
