@@ -1,4 +1,5 @@
-const readline = require('readline-sync');
+const readline = require('readline-sync'),
+    file = require('./file');
 
 function askAndReturnSearchTerm () {
     return readline.question('What do you want to search?\n');
@@ -14,10 +15,11 @@ function askAndReturnSearchPrefix () {
 
 function robot () {
     const content = {
+        'maximumSentences':  7,
         'searchTerm': askAndReturnSearchTerm(),
         'prefix': askAndReturnSearchPrefix()
     };
-
+    file.save(content);
     return content;
 };
 

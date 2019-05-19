@@ -2,15 +2,19 @@ const algorithmia = require('algorithmia'),
     algoCred = require('./../credentials/algorithimia.json'),
     watsonNlu = require('./../credentials/watson-nlu.json'),
     sentenceBoundaryDetection = require('sbd'),
-    NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
+    NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js'),
+    file = require('./file');
 
-async function robot (content) {
+async function robot () {
+    const content = file.load();
+
     await fetchContentFromWikipedia(content);
     sanitizeContent(content);
     breakContentIntoSentences(content);
     getMaximumSentences(content);
     await fetchKeywordsOfAllSentences(content);
 
+    file.save(content);
     async function fetchContentFromWikipedia (content) {
         const algorithmiaAuthenticated = algorithmia(algoCred.apiKey),
             wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2'),
