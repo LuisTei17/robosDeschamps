@@ -22,6 +22,7 @@
     "eslint-plugin-promise": "^3.4.2",
     "eslint-plugin-standard": "^2.0.1",
     "googleapis": "^40.0.0",
+    "image-downloader": "^3.4.2",
     "readline-sync": "^1.4.9",
     "sbd": "^1.0.15",
     "watson-developer-cloud": "^4.0.1"
